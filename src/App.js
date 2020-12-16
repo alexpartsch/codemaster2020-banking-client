@@ -1,15 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import AccountsTable from './banking/AccountsTable';
+import CreateAccountForm from './banking/CreateAccountForm';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Our Banking API Excercise!
-        </p>
-      </header>
+      <CreateAccountForm />
+      <AccountsTable />
     </div>
   );
 }

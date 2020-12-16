@@ -7,28 +7,41 @@ export default class WithdrawDialog extends Component {
         super(props);
         this.api = new BankingApiClient();
         this.state = {
-            withdrawAmount: 0
+            amount: 0
         };
     }
 
-    updateWithdrawAmount = (e) => {
-        const newWithdrawAmount = e.target.value;
+    updateAmount = (e) => {
+        const newAmount = e.target.value;
         this.setState({
-            withdrawAmount: newWithdrawAmount
+            amount: newAmount
         });
     };
 
     withdraw = async () => {
         const {account} = this.props;
-        const {withdrawAmount} = this.state;
-        console.log(`Withdraws ${withdrawAmount} for account ${account.id}`);
+        const {amount} = this.state;
+        console.log(`Withdraws ${amount} for account ${account.id}`);
+
+        await this.api.withdraw(account.id, amount);
+        window.location.reload();
+    };
+
+    deposit = async () => {
+        const {account} = this.props;
+        const {amount} = this.state;
+        console.log(`Deposit ${amount} for account ${account.id}`);
+
+        await this.api.deposit(account.id, amount);
+        window.location.reload();
     };
 
     render = () => {
         return (
             <fieldset>
-                <input type="number" value={this.state.withdrawAmount} onChange={this.updateWithdrawAmount}></input>
+                <input type="number" value={this.state.amount} onChange={this.updateAmount}></input>
                 <button onClick={this.withdraw}>withdraw</button>
+                <button onClick={this.deposit}>deposit</button>
             </fieldset>
         );
     };

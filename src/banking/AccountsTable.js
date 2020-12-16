@@ -1,5 +1,6 @@
 import {Component} from 'react';
 import BankingApiClient from './BankingApiClient';
+import WithdrawDialog from './WithdrawDialog';
 
 export default class AccountsTable extends Component {
 
@@ -27,6 +28,7 @@ export default class AccountsTable extends Component {
                         <th>Balance</th>
                         <th>Overdraft Facility</th>
                         <th>Creation Date</th>
+                        <th>Withdraw</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +40,7 @@ export default class AccountsTable extends Component {
                                 <td>{balance}</td>
                                 <td>{overdraftFacility}</td>
                                 <td>{opened}</td>
+                                <td><WithdrawDialog account={account} /></td>
                             </tr>
                         );
                     })}
